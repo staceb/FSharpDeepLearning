@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Charting", "Charting\Charting.fsproj", "{9E28F577-6080-4D51-B543-28883336DA0E}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SimpleXorNetwork", "SimpleXorNetwork\SimpleXorNetwork.fsproj", "{094A2C14-838C-4AE9-B48F-D1B46DAC50E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9E28F577-6080-4D51-B543-28883336DA0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E28F577-6080-4D51-B543-28883336DA0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E28F577-6080-4D51-B543-28883336DA0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{094A2C14-838C-4AE9-B48F-D1B46DAC50E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{094A2C14-838C-4AE9-B48F-D1B46DAC50E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{094A2C14-838C-4AE9-B48F-D1B46DAC50E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{094A2C14-838C-4AE9-B48F-D1B46DAC50E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

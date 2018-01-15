@@ -1,7 +1,13 @@
-﻿
-open System
+﻿open System
 open System.Windows.Forms
 open FSharp.Charting
+
+let linear x =
+    x
+
+let relu x =
+    if x < 0.0 then 0.0
+    else x
 
 let sigmoid x =
     1.0 / (1.0 + Math.E ** - x)
@@ -11,10 +17,18 @@ let swish x =
 
 [<EntryPoint>]
 let main argv =
-    let first = [ for x in -10.0 .. 10.0 -> (x, swish x) ]
-    let second = [ for x in -10.0 .. 10.0 -> (x, sigmoid x) ]
-    let chart = (Chart.Combine [ Chart.Line (first, Name = "Swish"); Chart.Line (second, Name = "Sigmoid") ]).ShowChart ()
+    let linearline = [ for x in -3.0 .. 0.01 .. 3.0 -> (x, linear x) ] |> Chart.Line
+    let reluline = [ for x in -3.0 .. 0.01 .. 3.0 -> (x, relu x) ] |> Chart.Line
+    let swishline = [ for x in -3.0 .. 0.01 .. 3.0 -> (x, swish x) ] |> Chart.Line
+    let sigmoidline = [ for x in -3.0 .. 0.01 .. 3.0 -> (x, sigmoid x) ] |> Chart.Line
+    
+    let combined = [ linearline; 
+                     reluline; 
+                     swishline; 
+                     sigmoidline ]
 
+    let chart = (Chart.Combine combined).ShowChart ()
+    
     Application.Run chart
 
     0
