@@ -144,6 +144,9 @@
   <ItemGroup>
     <ClCompile Include="vulkan.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="vulkan.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
