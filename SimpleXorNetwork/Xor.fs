@@ -3,7 +3,8 @@ open System.Windows.Forms
 open FSharp.Charting
 
 let random = 
-    0.5 - new Random ()
+    let rand = new Random ()
+    0.5 - rand.NextDouble ()
 
 type Matrix (rows: int, cols: int) =
     member x.Rows = rows
@@ -79,7 +80,7 @@ let train_output (weights: Matrix) (targets: Matrix) (outputs: Matrix) =
     
     for r in 0 .. weights.Rows - 1 do
         for c in 0 .. weights.Cols - 1 do
-            gradients.Data.[r, c] <- gradient targets.Data.[r, 0] ouptuts.Data.[r, 0]
+            gradients.Data.[r, c] <- gradient targets.Data.[r, 0] outputs.Data.[r, 0]
             weights.Data.[r, c] <- weights.Data.[r, c] - gradients.Data.[r, c]
     
     gradients
