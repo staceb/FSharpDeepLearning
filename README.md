@@ -2,6 +2,8 @@
 Not done.
 
 # Demos
+This repository contains these examples.
+
 ## Charting
 This example demonstrates the usage of FSharp.Charting.
 
@@ -19,6 +21,8 @@ Very basic usage of Vulkan API's compute shader.
 The compute shader will calculate some linear math for us.
 
 # Credits
+I would like to thank some of the libraries that I used.
+
 ## F# Programming Language
 Obviously.
 
