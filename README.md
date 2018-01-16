@@ -6,6 +6,7 @@ This repository contains these examples.
 
 ## Charting
 This example demonstrates the usage of FSharp.Charting.
+![Demo picture](/Charting/Charting.PNG)
 
 ## SimpleMatrix
 This example has some code for some linear math.
