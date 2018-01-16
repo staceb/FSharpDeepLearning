@@ -2,12 +2,13 @@
 open System.Windows.Forms
 open FSharp.Charting
 
-let random = new Random ()
+let random = 
+    0.5 - new Random ()
 
 type Matrix (rows: int, cols: int) =
     member x.Rows = rows
     member x.Cols = cols
-    member x.Data = Array2D.init<float> rows cols (fun x y -> (0.5 - random.NextDouble ()))
+    member x.Data = Array2D.init<float> rows cols (fun x y -> 0.0)
     
     static member (+) (a: Matrix, b: Matrix) =
         if a.Rows <> b.Rows || a.Cols <> b.Cols then
@@ -38,7 +39,7 @@ type Matrix (rows: int, cols: int) =
 
         ret
     
-let swish (x: double): double =
+let swish (x: float) =
     x / (1.0 + Math.E ** -x)
 
 let derivative f x =
@@ -66,21 +67,33 @@ let error (targets: Matrix) (outputs: Matrix) =
 
     sum
 
-// Regular, plain gradient descent method.
-// Look for other examples if you want stochastic gradient descent.
+let learning_rate =
+    0.5
+
 let train_output (weights: Matrix) (targets: Matrix) (outputs: Matrix) =
     if outputs.Rows <> targets.Rows then
         failwith "Invalid dimension."
     
     let gradients = new Matrix (weights.Rows, weights.Cols)
-    let gradient t y = (y - t) * (derivative swish y)
+    let gradient t y = learning_rate * (y - t) * (derivative swish y)
     
-    
+    for r in 0 .. weights.Rows - 1 do
+        for c in 0 .. weights.Cols - 1 do
+            gradients.Data.[r, c] <- gradient targets.Data.[r, 0] ouptuts.Data.[r, 0]
+            weights.Data.[r, c] <- weights.Data.[r, c] - gradients.Data.[r, c]
     
     gradients
 
 let train_hidden (weights: Matrix) (prev_gradients: Matrix) =
     let gradients = new Matrix (weights.Rows, weights.Cols)
+    let prev = new Matrix (weights.Rows, 1)
+    
+    for r in 0 .. weights.Rows - 1 do
+        for c in 0 .. weights.Cols - 1 do
+            prev.Data.[r, 0] <- prev.Data.[r, 0] + prev_gradients.Data.[r, c]
+    
+    
+    
     gradients
 
 [<EntryPoint>]
@@ -89,8 +102,25 @@ let main argv =
     let first = new Matrix (2, 2)
     let second = new Matrix (3, 2)
     let third = new Matrix (1, 3)
+    
+    for r in 0 .. first.Rows - 1 do
+        for c in 0 .. first.Cols - 1 do
+            first.Data.[r, c] <- random
+    
+    for r in 0 .. second.Rows - 1 do
+        for c in 0 .. second.Cols - 1 do
+            second.Data.[r, c] <- random
+    
+    for r in 0 .. third.Rows - 1 do
+        for c in 0 .. third.Cols - 1 do
+            third.Data.[r, c] <- random
 
     let biases = [| new Matrix (2, 1); new Matrix (3, 1); new Matrix (1, 1) |]
+    
+    for bias in biases do
+        for r in 0 .. bias.Rows - 1 do
+            for c in 0 .. bias.Cols - 1 do
+                bias.Data.[r, c] <- random
     
     let inputs = [| new Matrix (2, 1); new Matrix (2, 1); new Matrix (2, 1); new Matrix (2, 1) |]
     let targets = [| new Matrix (1, 1); new Matrix (1, 1); new Matrix (1, 1); new Matrix (1, 1) |]
@@ -117,8 +147,8 @@ let main argv =
 
     let errors = Array.zeroCreate 4000
 
-    // 4000 iterations
-    for i in 1 .. 4000 do
+    // 2000 iterations
+    for i in 1 .. 2000 do
         let mutable outputs = eval first inputs.[i % 4] biases.[0]
 
         outputs <- eval second outputs biases.[1]
