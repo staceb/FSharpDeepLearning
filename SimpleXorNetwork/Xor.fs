@@ -68,12 +68,19 @@ let error (targets: Matrix) (outputs: Matrix) =
 
 // Regular, plain gradient descent method.
 // Look for other examples if you want stochastic gradient descent.
-let train_output (targets: Matrix) (weights: Matrix) (outputs: Matrix) =
-    let gradients = new Matrix (targets.Rows, weights.Cols)
+let train_output (weights: Matrix) (targets: Matrix) (outputs: Matrix) =
+    if outputs.Rows <> targets.Rows then
+        failwith "Invalid dimension."
+    
+    let gradients = new Matrix (weights.Rows, weights.Cols)
+    let gradient t y = (y - t) * (derivative swish y)
+    
+    
+    
     gradients
 
-let train_hidden (prev: Matrix) =
-    let gradients = new Matrix (prev.Rows, prev.Cols)
+let train_hidden (weights: Matrix) (prev_gradients: Matrix) =
+    let gradients = new Matrix (weights.Rows, weights.Cols)
     gradients
 
 [<EntryPoint>]
