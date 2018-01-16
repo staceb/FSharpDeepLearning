@@ -70,7 +70,10 @@ let error (targets: Matrix) (outputs: Matrix) =
 // Look for other examples if you want stochastic gradient descent.
 let train_output (targets: Matrix) (weights: Matrix) (outputs: Matrix) =
     let gradients = new Matrix (targets.Rows, weights.Cols)
-    
+    gradients
+
+let train_hidden (prev: Matrix) =
+    let gradients = new Matrix (prev.Rows, prev.Cols)
     gradients
 
 [<EntryPoint>]

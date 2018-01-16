@@ -16,6 +16,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Vulkan", "Vulkan\Vulkan.fsp
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VulkanBackend", "VulkanBackend\VulkanBackend.vcxproj", "{67B1B72F-2460-44B8-9602-61D4994253FC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backends", "Backends", "{BD45B11D-0FE8-4C9A-A65C-44FF15C01783}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{67B1B72F-2460-44B8-9602-61D4994253FC} = {BD45B11D-0FE8-4C9A-A65C-44FF15C01783}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {099167E6-ADEA-437D-84D6-3B9ECCBB1FE9}

@@ -4,9 +4,15 @@ open System.Runtime.InteropServices
 module Vulkan =
     [<DllImport ("VulkanBackend.dll", CallingConvention = CallingConvention.Cdecl)>]
     extern void init_vulkan ();
+    
+    [<DllImport ("VulkanBackend.dll", CallingConvention = CallingConvention.Cdecl)>]
+    extern void term_vulkan ();
 
-    let InitVulkan () =
+    let InitVulkan =
         init_vulkan ()
+
+    let TermVulkan =
+        term_vulkan ()
 
 [<EntryPoint>]
 let main argv = 
